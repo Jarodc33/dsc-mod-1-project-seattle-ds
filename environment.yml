@@ -157,6 +157,6 @@ dependencies:
   - zipp=2.2.0=py_0
   - zlib=1.2.11=h0b31af3_1006
   - zstd=1.4.4=he7fca8b_1
-  - plotly_express==0.4.0
+  - tabula-py
 prefix: //anaconda3/envs/oy-env
 
