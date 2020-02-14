@@ -97,10 +97,11 @@ def multi_bar_graph(table_list, name_list, x_label):
                    #color = ['b','g','r','y','k'][counter % 5],
                    align = 'center',
                    label = name_list[counter], edgecolor = 'black', linewidth = 1)
-            ax.set_title(index, fontsize = 35)
+            ax.set_title(index, fontsize = 40)
             ax.set_ylabel('Percentage', fontsize = 25)
             ax.set_xlabel(x_label, fontsize = 25)
             ax.set_ylim(0, 115)
+            ax.set_yticklabels([str(i * 20) for i in range(6)], fontsize = 20)
             ax.set_xticks(x + width / 2)
             ax.set_xticklabels(tuple(table.columns), fontsize = 20)
             ax.legend(loc = 'upper left', fontsize = 25)
@@ -108,10 +109,29 @@ def multi_bar_graph(table_list, name_list, x_label):
         counter += 1
     return fig, axes
 
-def display_one_axis(axes, index):
+def display_one_axis(fig, axes, index, title = '', save_name = ''):
+    """
+    If save name empty the graph will be displayed. If named it will save the image
+    """
     for i in range(len(axes)):
         if i != index:
             axes[i].remove()
-    plt.show()
+    x = axes[index]
+    if title: x.set_title(title, fontsize  = 40)
+    if save_name:
+        x.remove()
+        fig2 = plt.figure(figsize = (15, 13))
+        x.figure=fig2
+        fig2.axes.append(x)
+        fig2.add_axes(x)
+        
+        dummy = fig2.add_subplot(111)
+        x.set_position(dummy.get_position())
+        dummy.remove()
+        fig2.subplots_adjust()
+
+        fig2.savefig(save_name)
+    else: plt.show()
     plt.close()
+    plt.ioff()
     return None
