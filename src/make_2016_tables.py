@@ -1,9 +1,13 @@
 import os
 import sys
+module_path = os.path.abspath(os.path.join(os.pardir, os.pardir))
+if module_path not in sys.path:
+    sys.path.append(module_path)
+
 import pandas as pd
 from tabula import read_pdf
 
-from data_formating import *
+from src.data_formating import *
 
 
 def get_2016_tables(save = False):
@@ -17,7 +21,7 @@ def get_2016_tables(save = False):
     four_race = make_table_with_percentage(__remove_commas(__four_races()))
     
     if save:
-        save_tables({'2016_four_race' : four_race, '2016_age' : age_2016, '2016_education' : edu_2016}, '../reports/figures/')
+        save_tables({'2016_four_race' : four_race, '2016_age' : age_2016, '2016_education' : edu_2016}, '../../reports/figures/')
         
     return four_race, age_2016, edu_2016
 
@@ -38,7 +42,7 @@ def __get_frame_from_pdf():
     """
     #module_path = os.path.abspath(os.path.join(os.pardir, os.pardir))
     #if module_path not in sys.path: sys.path.append(module_path)
-    return read_pdf("../references/Opportunity-Youth-2016-Data-Brief-v2.pdf", pages = 9)[0]
+    return read_pdf("../../references/Opportunity-Youth-2016-Data-Brief-v2.pdf", pages = 9)[0]
 
 
 def __get_age_table(df):

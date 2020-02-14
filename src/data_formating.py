@@ -1,7 +1,12 @@
-
+import os
+import sys
+module_path = os.path.abspath(os.path.join(os.pardir, os.pardir))
+if module_path not in sys.path:
+    sys.path.append(module_path)
+    
 import pandas as pd
 
-from data_acquisition import *
+from src.data_acquisition import *
 
 
 def make_table_with_percentage(dct): # TODO Comment on this
@@ -86,7 +91,7 @@ def page_2_tables(df, save = False): # TODO COMMENT MORE
     all_races = __fix_all_race_table(pd.DataFrame(races_dict))
 
     if save:
-        save_tables({'2017_four_race' : four_race, '2017_age' : age, '2017_education' : education, '2017_all_races' : all_races}, '../reports/figures/')
+        save_tables({'2017_four_race' : four_race, '2017_age' : age, '2017_education' : education, '2017_all_races' : all_races}, '../../reports/figures/')
     
     return four_race, age, education, all_races
 

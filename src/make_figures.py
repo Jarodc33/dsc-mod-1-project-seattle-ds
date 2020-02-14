@@ -1,7 +1,14 @@
-from data_acquisition import *
-from data_formating import *
-from make_2016_tables import *
-from multi_bar_grapher import *
+import os
+import sys
+module_path = os.path.abspath(os.path.join(os.pardir, os.pardir))
+if module_path not in sys.path:
+    sys.path.append(module_path)
+  
+
+from src.data_acquisition import *
+from src.data_formating import *
+from src.make_2016_tables import *
+from src.multi_bar_grapher import *
 
 import pandas as pd
 import matplotlib.pyplot as plt

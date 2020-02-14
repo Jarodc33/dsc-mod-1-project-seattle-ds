@@ -81,6 +81,7 @@ def multi_bar_graph(table_list, name_list, x_label):
     -------
     Axes of all the graphs
     """
+    plt.style.use('seaborn')
     rows = len(table_list[0])
     fig, axes = plt.subplots(nrows = rows, ncols = 1, figsize = (15, rows * 10))
     x = np.arange(len(table_list[0].columns))
@@ -133,6 +134,5 @@ def display_one_axis(fig, axes, index, title = '', save_name = ''):
 
         fig2.savefig(save_name)
     else: plt.show()
-    plt.close()
     plt.ioff()
-    return None
+    return fig
