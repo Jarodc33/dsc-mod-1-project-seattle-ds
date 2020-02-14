@@ -97,16 +97,17 @@ def multi_bar_graph(table_list, name_list, x_label):
                    #color = ['b','g','r','y','k'][counter % 5],
                    align = 'center',
                    label = name_list[counter], edgecolor = 'black', linewidth = 1)
-            ax.set_title(index, fontsize = 40)
-            ax.set_ylabel('Percentage', fontsize = 25)
-            ax.set_xlabel(x_label, fontsize = 25)
+            ax.set_title(index, fontsize = 50)
+            ax.set_ylabel('Percentage', fontsize = 35)
+            ax.set_xlabel(x_label, fontsize = 35)
             ax.set_ylim(0, 115)
-            ax.set_yticklabels([str(i * 20) for i in range(6)], fontsize = 20)
+            ax.set_yticklabels([str(i * 20) for i in range(6)], fontsize = 30)
+            ax.set_xticklabels(tuple(table.columns), fontsize = 30)
             ax.set_xticks(x + width / 2)
-            ax.set_xticklabels(tuple(table.columns), fontsize = 20)
-            ax.legend(loc = 'upper left', fontsize = 25)
+            ax.legend(loc = 'upper left', fontsize = 35)
             row_num += 1
         counter += 1
+    fig.tight_layout()
     return fig, axes
 
 def display_one_axis(fig, axes, index, title = '', save_name = ''):
