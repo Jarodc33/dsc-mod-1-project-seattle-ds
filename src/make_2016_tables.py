@@ -6,7 +6,7 @@ from tabula import read_pdf
 from data_formating import *
 
 
-def get_2016_tables():
+def get_2016_tables(save = False):
     """
     Gets the tables from 2016 pdf and formats them properly
     """
@@ -15,6 +15,10 @@ def get_2016_tables():
     age_2016 = make_table_with_percentage(__remove_commas(__get_age_table(df)))
     edu_2016 = make_table_with_percentage(__remove_commas(__get_edu_table(df)))
     four_race = make_table_with_percentage(__remove_commas(__four_races()))
+    
+    if save:
+        save_tables({'2016_four_race' : four_race, '2016_age' : age_2016, '2016_education' : edu_2016}, '../reports/figures/')
+        
     return four_race, age_2016, edu_2016
 
 

@@ -73,7 +73,7 @@ def page_2_dicts(df): # TODO Better comments!
     return four_races, age, edu_and_age, race
 
 
-def page_2_tables(df): # TODO COMMENT MORE
+def page_2_tables(df, save = False): # TODO COMMENT MORE
     """
     df: dataframe of region and age range
     returns 4 dataframes that match the table on page 2 of the reference 2016 document
@@ -85,6 +85,9 @@ def page_2_tables(df): # TODO COMMENT MORE
     education = make_table_with_percentage(edu_dict)
     all_races = __fix_all_race_table(pd.DataFrame(races_dict))
 
+    if save:
+        save_tables({'2017_four_race' : four_race, '2017_age' : age, '2017_education' : education, '2017_all_races' : all_races}, '../reports/figures/')
+    
     return four_race, age, education, all_races
 
 
@@ -102,3 +105,10 @@ def __fix_all_race_table(all_races): # TODO COMMENT!!!!
     all_races.index = all_races.index.str.title()
     return all_races
 
+def save_tables(dct, path):
+    """
+    Saves tables into a path with a given title.
+    keys are the title and values are the table
+    """
+    for name, table in dct.items():
+        table.to_csv(f'{path}{name}.csv')
